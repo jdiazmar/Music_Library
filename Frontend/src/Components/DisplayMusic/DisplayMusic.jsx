@@ -1,9 +1,4 @@
-
-
 const DisplayMusic = (props) => {
-
-
-
 
 return ( 
     <div>
@@ -18,7 +13,7 @@ return (
                 </tr>
             </thead>
             <tbody>
-                {props.userEntries.map((entry) => {
+                {props.parentEntries.map((entry) => {
                     return (
 
                         <tr>

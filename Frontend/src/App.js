@@ -5,14 +5,6 @@ import AddNewSong from './Components/AddNewSong/AddNewSong';
 
 function App() {
 
-  const [entries, setEntries] = useState([{title: 'Painting Pictures', artist: 'Tj Carrol', album: 'Painting Pictures', release_date: '2022-07-28', genre: 'Hip-Hop'}])
-    
-  function addNewSong(entry) {
-    let tempEntries = [entry, ...entries];
-    setEntries(tempEntries);
-
-  }
-
   const [songs, setSongs] = useState([]);
 
   useEffect(() => {
@@ -24,6 +16,14 @@ function App() {
     console.log(response.data);
     setSongs(response.data);
   }
+
+  const [entries, setEntries] = useState([])
+
+  function addNewSong(entry) {
+  let userEntries = [...entries, entry];
+  setEntries(userEntries);
+  
+} 
   
 
 
@@ -31,15 +31,10 @@ function App() {
     
     <div>
       <div>
-        <DisplayMusic userEntries={songs} />
+        <DisplayMusic parentEntries={songs}  />
+        <AddNewSong AddNewSongProperty={addNewSong} />
       </div>
-      <div>
-        <AddNewSong addNewSongProperty={addNewSong}/>
-      </div>
-      <div>   
-          <button onClick={() => getAllSongs()}>Get All Songs!</button>
-      </div>
-    </div>
+     </div>
   );
 }
 

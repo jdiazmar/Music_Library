@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 
 
-
 const AddNewSong = (props) => {
 
-    const [title, setTitle] = useState('')
-const [album, setAlbum] = useState('')
+const [title, setTitle] = useState('')
 const [artist, setArtist] = useState('')
+const [album, setAlbum] = useState('')
 const [releaseDate, setReleaseDate] = useState('')
 const [genre, setGenre] = useState('')
 
@@ -22,6 +21,7 @@ function handleSubmit(event){
     console.log(newSong);
     props.addNewSongProperty(newSong);
 }
+
 
     return ( 
         <form onSubmit={handleSubmit}>
@@ -39,13 +39,13 @@ function handleSubmit(event){
             </div>
             <div>
                 <label>Release Date</label>
-                <input type='text' value={releaseDate} onChange={(event) => setReleaseDate(event.target.value)} />
+                <input type='date' value={releaseDate} onChange={(event) => setReleaseDate(event.target.value)} />
             </div>
             <div>
                 <label>Genre</label>
                 <input type='text' value={genre} onChange={(event) => setGenre(event.target.value)} />
             </div>
-            <button type='submit'>Add New Song!</button>
+            <button type='submit'>Add New Song</button>
         </form>
      );
 }
