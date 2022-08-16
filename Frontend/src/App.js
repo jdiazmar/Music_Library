@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import DisplayMusic from './Components/DisplayMusic/DisplayMusic';
 import AddNewSong from './Components/AddNewSong/AddNewSong';
+import SearchBar from './Components/SearchBar/SearchBar';
+import NavBar from './Components/NavBar/NavBar';
 
 
 
@@ -15,19 +17,17 @@ function App() {
   
   async function getAllSongs(){
     const response = await axios.get('http://127.0.0.1:8000/music/');
-    console.log(response.data);
     setSongs(response.data);
   };
 
   async function addSong(newSong){
     const response = await axios.post('http://127.0.0.1:8000/music/', newSong);
-    return response.data;
+    if(response.status === 201){
+    await getAllSongs();
+   }
   };
 
-  async function deleteSong(entry){
-    let response = await axios.delete('http://127.0.0.1:8000/music/', entry);
-    return response.data;
-  }
+
   
  
   
@@ -35,7 +35,9 @@ function App() {
     
     <div>
       <div>
-        <DisplayMusic parentEntries={songs} deleteSongProperty={deleteSong} />
+        <NavBar />
+        <SearchBar songs={songs} setSongs={setSongs} />
+        <DisplayMusic parentEntries={songs}  />
         <AddNewSong addNewSongProperty={addSong}  />
       </div>
      </div>

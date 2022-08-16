@@ -22,7 +22,6 @@ return (
                             <td>{entry.album}</td>
                             <td>{entry.release_date}</td>
                             <td>{entry.genre}</td>
-                            <td> <button type="submit" onClick={() => props.deleteSongProperty(entry)}>Delete</button></td>
                         </tr>
                     )
                 })}
