@@ -28,6 +28,12 @@ function App() {
   };
 
 
+   
+
+
+
+
+
   
  
   
@@ -37,7 +43,7 @@ function App() {
       <div>
         <NavBar />
         <SearchBar songs={songs} setSongs={setSongs} />
-        <DisplayMusic parentEntries={songs}  />
+        <DisplayMusic parentEntries={songs} />
         <AddNewSong addNewSongProperty={addSong}  />
       </div>
      </div>

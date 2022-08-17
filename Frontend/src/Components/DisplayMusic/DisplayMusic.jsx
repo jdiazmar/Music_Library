@@ -1,4 +1,8 @@
+
+
 const DisplayMusic = (props) => {
+
+
 
 return ( 
     <div>
@@ -16,12 +20,13 @@ return (
                 {props.parentEntries.map((entry) => {
                     return (
 
-                        <tr>
+                        <tr >
                             <td>{entry.title}</td>
                             <td>{entry.artist}</td>
                             <td>{entry.album}</td>
                             <td>{entry.release_date}</td>
                             <td>{entry.genre}</td>
+                            <td> <button type="submit" >Delete Song</button> </td>
                         </tr>
                     )
                 })}
