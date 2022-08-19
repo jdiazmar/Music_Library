@@ -13,7 +13,7 @@ function App() {
 
   useEffect(() => {
       getAllSongs();
-  }, [addSong], []);
+  }, [addSong]);
   
   async function getAllSongs(){
     const response = await axios.get('http://127.0.0.1:8000/music/');
@@ -27,23 +27,18 @@ function App() {
    }
   };
 
-
+  async function deleteSong(entry){
+    let response = await axios.delete(`/music/${songs.id}/`, entry);
+    console.log(response.data);
+}
    
-
-
-
-
-
-  
- 
-  
-  return (
+return (
     
     <div>
       <div>
         <NavBar />
         <SearchBar songs={songs} setSongs={setSongs} />
-        <DisplayMusic parentEntries={songs} />
+        <DisplayMusic parentEntries={songs} deleteSongProperty={deleteSong} />
         <AddNewSong addNewSongProperty={addSong}  />
       </div>
      </div>
