@@ -34,8 +34,8 @@ function App() {
    
 return (
     
-    <div>
-      <div>
+    <div className='container-fluid'>
+      <div >
         <NavBar />
         <SearchBar songs={songs} setSongs={setSongs} />
         <DisplayMusic parentEntries={songs} deleteSongProperty={deleteSong} />
