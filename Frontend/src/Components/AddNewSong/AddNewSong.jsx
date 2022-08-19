@@ -1,4 +1,5 @@
 import { useState } from "react";
+import './AddNewSong.css';
 
 
 
@@ -51,7 +52,7 @@ function handleSubmit(event) {
             <label>Genre</label>
             <input type='text'  value={genre} onChange={(event) => setGenre(event.target.value)} />
 
-            <button type='submit'>Add New Song</button>
+            <button type='submit' class="btn btn-primary btn-sm" >Add New Song</button>
         </div>
         
     </form>

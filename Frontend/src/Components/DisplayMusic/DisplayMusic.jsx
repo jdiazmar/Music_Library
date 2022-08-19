@@ -6,7 +6,7 @@ const DisplayMusic = (props) => {
 
 return ( 
     <div>
-        <table>
+        <table className="table">
             <thead>
                 <tr>
                     <th>Title</th>
@@ -20,13 +20,13 @@ return (
                 {props.parentEntries.map((entry) => {
                     return (
 
-                        <tr >
+                        <tr class="font-weight-bold" >
                             <td>{entry.title}</td>
                             <td>{entry.artist}</td>
                             <td>{entry.album}</td>
                             <td>{entry.release_date}</td>
                             <td>{entry.genre}</td>
-                            <td> <button type="submit" onClick={() => props.deleteSongProperty(entry)} >Delete Song</button> </td>
+                            <td> <button type="submit" onClick={() => props.deleteSongProperty(entry)} class="btn btn-primary btn-sm" >Delete Song</button> </td>
                         </tr>
                     )
                 })}

@@ -28,18 +28,49 @@ function App() {
   };
 
   async function deleteSong(entry){
-    let response = await axios.delete(`/music/${songs.id}/`, entry);
-    console.log(response.data);
+    let response = await axios.delete(`/music/${entry.id}/`, null);
+    if(response.status === 204){
+      await getAllSongs();
+    }
+}
+
+const [songSearch, setSongSearch] = useState("");
+
+function searchLibrary(props){
+  let filterLibrary = songSearch.filter((element) => {
+    if(element.title.toLowercase().includes(props)){
+      return true
+    }
+    else if(element.artist.toLowercase().includes(props)){
+      return true
+    }
+    else if(element.album.toLowercase().includes(props)){
+      return true
+    }
+    else if(element.release_date.toLowercase().includes(props)){
+      return true
+    }
+    else if(element.genre.toLowercase().includes(props)){
+      return true
+    }
+  })
+  setSongSearch(filterLibrary);
 }
    
 return (
     
-    <div className='container-fluid'>
-      <div >
-        <NavBar />
-        <SearchBar songs={songs} setSongs={setSongs} />
-        <DisplayMusic parentEntries={songs} deleteSongProperty={deleteSong} />
-        <AddNewSong addNewSongProperty={addSong}  />
+    <div className='class="p-3 mb-2 bg-secondary text-white">.bg-secondary' >
+      <div className='container-md'>
+        <div className='row'>
+          <div>
+            <NavBar />
+          </div>
+        </div>
+        <div className='col-md-12' >
+          <SearchBar  foundSong={searchLibrary} />
+          <DisplayMusic parentEntries={songs} deleteSongProperty={deleteSong} />
+          <AddNewSong addNewSongProperty={addSong}  />
+        </div>
       </div>
      </div>
   );
