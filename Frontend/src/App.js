@@ -34,27 +34,17 @@ function App() {
     }
 }
 
-const [songSearch, setSongSearch] = useState("");
-
-function searchLibrary(props){
-  let filterLibrary = songSearch.filter((element) => {
-    if(element.title.toLowercase().includes(props)){
-      return true
-    }
-    else if(element.artist.toLowercase().includes(props)){
-      return true
-    }
-    else if(element.album.toLowercase().includes(props)){
-      return true
-    }
-    else if(element.release_date.toLowercase().includes(props)){
-      return true
-    }
-    else if(element.genre.toLowercase().includes(props)){
-      return true
-    }
-  })
-  setSongSearch(filterLibrary);
+function searchLibrary(query){
+  let newArray = []
+  for(let i = 0; i < songs.length; i++){
+    if(songs[i].title.toLowerCase().includes(query) ||
+       songs[i].artist.toLowerCase().includes(query) ||
+       songs[i].album.toLowerCase().includes(query) ||
+       songs[i].release_date.toLowerCase().includes(query) ||
+       songs[i].genre.toLowerCase().includes(query)){
+        newArray.push(songs[i]);
+       }
+  }setSongs(newArray)
 }
    
 return (
@@ -67,7 +57,7 @@ return (
           </div>
         </div>
         <div className='col-md-12' >
-          <SearchBar  foundSong={searchLibrary} />
+          <SearchBar queryData={searchLibrary} />
           <DisplayMusic parentEntries={songs} deleteSongProperty={deleteSong} />
           <AddNewSong addNewSongProperty={addSong}  />
         </div>

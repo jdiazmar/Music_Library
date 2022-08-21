@@ -1,21 +1,22 @@
 import React, { useState } from "react";
 
 
-const SearchBar = ({foundSong}) => {
+const SearchBar = (props) => {
  
-  const [searchSongs, setSearchSongs] = useState('');
+  const [query, setQuery] = useState('');
 
-  let handleSearch = (event) => {
-    let searchLibrary = event.target.value.toLowercase();
-    setSearchSongs(searchLibrary);
-    foundSong(searchLibrary);
+  function handleSubmit(event){
+    event.preventDefault();
+    let foundSearch = query.toLocaleLowerCase();
+    console.log(foundSearch);
+    props.queryData(foundSearch)
   }
 
   return (
     <div >
-      <form>
+      <form onSubmit={handleSubmit}>
         <div>
-          <input type="text" value={searchSongs} onChange={handleSearch} placeholder="Ex: Scootie Wop" />{" "}
+          <input type="text" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Ex: Scootie Wop" />{" "}
           <button type="submit">Search Music Library</button>
         </div>  
       </form>
